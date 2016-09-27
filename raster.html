@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 	<meta http-equiv="expires" content="0"> <!-- jedes mal neu laden erzwingen -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title> E-Tools Master Branch</title>
-	<!-- <link rel=”shortcut icon” type=”image/x-icon” href=”/favicon.ico”> -->
-	<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
-	<link rel="shortcut icon" sizes="196x196" href="icon-196x196.png">
-	<link rel="stylesheet" href="js/jquery.mobile-1.3.0.min.css">
-	<link rel="stylesheet" href="js/my.css">
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery.mobile-1.3.0.min.js"></script>
-	<script language="javascript" type="text/javascript" src="raster.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title> E-Tools Master Branch</title>
+    <!-- <link rel=”shortcut icon” type=”image/x-icon” href=”/favicon.ico”> -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" sizes="196x196" href="icon-196x196.png">
+    <link rel="stylesheet" href="js/jquery.mobile-1.3.0.min.css">
+    <link rel="stylesheet" href="js/my.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.3.0.min.js"></script>
+    <script language="javascript" type="text/javascript" src="raster.js"></script>
 </head>
 <body>
-	<div data-role="page" id="raster">
-		<div data-theme="a" data-role="header">
-			<a data-role="button" href="rasterinfo.html" data-icon="info" data-iconpos="left"
-			class="ui-btn-right" data-rel="dialog" data-transition="pop">
-				Info
-			</a>
-			<a data-role="button" href="index.html" data-icon="back" data-iconpos="left"
-			class="ui-btn-left" data-direction="reverse" data-rel="back">
-				zurück
-			</a>
-			<h3>
-				E-Tools
-			</h3>
-		</div>
+
+<!-- raster -->
+<div data-role="page" id="raster">
+    <div data-theme="a" data-role="header">
+		<a data-role="button" href="rasterinfo.html" data-icon="info" data-iconpos="left"
+        class="ui-btn-right" data-rel="dialog" data-transition="pop">
+            Info
+        </a>
+        <a data-role="button" href="index.html" data-icon="back" data-iconpos="left"
+        class="ui-btn-left" data-direction="reverse" data-rel="back">
+            zurück
+        </a>
+        <h3>
+			E-Tools
+        </h3>
+    </div>
+	
+	<div data-role="content">
+    <div>
 		<div data-role="content">
-			<div>
-				<div data-role="content">
-					<ul data-role="listview" data-divider-theme="b" data-inset="true">
-						<li data-role="list-divider" role="heading">
-							Rasterberechnung
-						</li>
-						<li data-theme="c">
-							<label>
-								Länge der Bewertungsfläche in Meter:
-							</label>
-							<input tabindex="1" type="text" id="inputLength" data-role="controlgroup" onkeyup="checkLength()"/>
-						</li>
-						<li data-theme="c">
-							<label>
-								Anzahl der Rasterpunkte:
-							</label>
-							<span></span><span id="outputarla" >0</span>
-						</li>
-						<li data-theme="c">
-							<label>
-								Rasterlänge:
-							</label>
-							<span></span><span id="outputrlla">0</span>
-						</li>
-						<li data-role="list-divider" role="heading">
-						</li>
-						<li data-theme="c">
-							<label>
-								Breite der Bewertungsfläche in Meter:
-							</label>
-							<input tabindex="2" type="text" id="inputWidth" data-role="controlgroup" onkeyup="checkWidth()"/>
-						</li>
-						<li data-theme="c">
-							<label>
-								Anzahl der Rasterpunkte:
-							</label>
-							<span></span><span id="outputarbb" >0</span>
-						</li>
-						<li data-theme="c">
-							<label>
-								Rasterbreite:
-							</label>
-							<span></span><span id="outputrlbb">0</span>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<ul data-role="listview" data-divider-theme="b" data-inset="true">
+				<li data-role="list-divider" role="heading">
+					Rasterberechnung
+				</li>
+				<li data-theme="c">
+					<label>
+						Länge der Bewertungsfläche in Meter:
+					</label>
+					<input tabindex="1" type="text" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
+				</li>
+				<li data-theme="c">
+					<label>
+						Anzahl der Rasterpunkte:
+					</label>
+					<span></span><span id="outputarla" >0</span>
+				</li>
+				<li data-theme="c">
+					<label>
+						Rasterlänge:
+					</label>
+					<span></span><span id="outputrlla">0</span>
+				</li>
+				<li data-role="list-divider" role="heading">
+				</li>
+				<li data-theme="c">
+					<label>
+						Breite der Bewertungsfläche in Meter:
+					</label>
+					<input tabindex="2" type="text" id="inputbreite" data-role="controlgroup" onkeyup="checkb()" onchange="checkb()"/>
+				</li>
+				<li data-theme="c">
+					<label>
+						Anzahl der Rasterpunkte:
+					</label>
+					<span></span><span id="outputarbb" >0</span>
+				</li>
+				<li data-theme="c">
+					<label>
+						Rasterbreite:
+					</label>
+					<span></span><span id="outputrlbb">0</span>
+				</li>
+				</li>
+			</ul>
 		</div>
 	</div>
+</div>
 
 </body>
 </html>

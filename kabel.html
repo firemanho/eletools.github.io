@@ -1,341 +1,324 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="expires" content="0">
-	<!-- jedes mal neu laden erzwingen -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	<meta http-equiv="expires" content="0"> <!-- jedes mal neu laden erzwingen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title>E-Tools</title>
-	<!-- <link rel=”shortcut icon” type=”image/x-icon” href=”/favicon.ico”> -->
-	<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
-	<link rel="shortcut icon" sizes="196x196" href="icon-196x196.png">
-	<link rel="stylesheet" href="js/jquery.mobile-1.3.0.min.css">
-	<link rel="stylesheet" href="js/my.css">
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery.mobile-1.3.0.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title> E-Tools Master Branch</title>
+    <!-- <link rel=”shortcut icon” type=”image/x-icon” href=”/favicon.ico”> -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" sizes="196x196" href="icon-196x196.png">
+    <link rel="stylesheet" href="js/jquery.mobile-1.3.0.min.css">
+    <link rel="stylesheet" href="js/my.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.3.0.min.js"></script>
 	<script language="javascript" type="text/javascript" src="kabel.js"></script>
 </head>
-
 <body>
-	<div data-role="page" id="kabel">
-		<div data-theme="a" data-role="header">
-			<a data-role="button" href="kabelinfo.html" data-icon="info" data-iconpos="left" class="ui-btn-right" data-rel="dialog" data-transition="pop">
+
+<!-- kabel -->
+<div data-role="page" id="kabel">
+	<div data-theme="a" data-role="header">
+		<a data-role="button" href="kabelinfo.html" data-icon="info" data-iconpos="left"
+		class="ui-btn-right" data-rel="dialog" data-transition="pop">
 			Info
 		</a>
-			<a data-role="button" href="index.html" data-icon="back" data-iconpos="left" class="ui-btn-left" data-direction="reverse" data-rel="back">
+		<a data-role="button" href="index.html" data-icon="back" data-iconpos="left"
+		class="ui-btn-left" data-direction="reverse" data-rel="back">
 			zurück
 		</a>
-			<h3>
+		<h3>
 			E-Tools
 		</h3>
-		</div>
-
-		<div data-role="content">
-			<ul data-role="listview" data-divider-theme="b" data-inset="true">
-				<li data-role="list-divider" role="heading">
-					Grundlegendes:
-				</li>
-				<li data-theme="c">
-					<fieldset data-role="controlgroup" data-type="vertical">
-						<legend>
-							Netzart auswählen:
-						</legend>
-						<input id="radiogleichstrom" name="strom" value="gleichstrom" type="radio" onclick="netzWahl()">
-						<label for="radiogleichstrom">
-							Gleichstrom
-						</label>
-						<input id="radiowechselstrom" name="strom" value="wechselstrom" type="radio" onclick="netzWahl()" checked="true">
-						<label for="radiowechselstrom">
-							Wechselstrom
-						</label>
-						<input id="radiodrehstrom" name="strom" value="drehstrom" type="radio" onclick="netzWahl()">
-						<label for="radiodrehstrom">
-							Drehstrom
-						</label>
-					</fieldset>
-				</li>
-				<li data-theme="c">
-					<legend>
-						Spannung in Volt:
-					</legend>
-					<input tabindex="1" type="text" id="inputspannung" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()" value="230"/>
-				</li>
-                                <li data-theme="c">
-                                        <fieldset data-role="controlgroup">
-                                                <legend>Was möchten Sie eingeben?</legend>
-                                                <input type="radio" name="radio-choice" id="radiostromeingegeben" value="choice-1" onclick="wasRechnen()" checked="checked">
-                                                <label for="radiostromeingegeben">Strom</label>
-                                                
-                                                <input type="radio" name="radio-choice" id="radioleistungeingegeben" value="choice-2" onclick="wasRechnen()">
-                                                <label for="radioleistungeingegeben">Leistung</label>
-                                        </fieldset>				
-                                </li>
-                                <li id="elementinputstrom" data-theme="c">
-					<legend>
-						Strom in Amperé:
-					</legend>
-					<input tabindex="2" type="text" id="inputstrom" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()" />
-				</li>
-                                <li id="elementinputleistung" data-theme="c" style="display:none">
-					<legend>
-						Leistung in Watt:
-					</legend>
-					<input tabindex="2" type="text" id="inputleistung" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()" />
-				</li>
-				<li id="elementoutputleistung" data-theme="c">
-					<legend>
-						Leistung in Watt:
-					</legend>
-					<span></span><span id="outputleistung">0</span>
-				</li>
-				<li id="elementoutputstrom" data-theme="c" style="display:none">
-					<legend>
-						Strom in Amperé:
-					</legend>
-					<span></span><span id="outputstrom">0</span>
-				</li>
-				<li id="elementphi" data-theme="c">
-					<legend>
-						cosinus phi:
-					</legend>
-					<input tabindex="3" type="text" id="inputphi" data-role="controlgroup" value="0,9" onkeyup="eingabe()" onchange="eingabe()" />
-				</li>
-				<li data-theme="c">
-					<label for="Absicherung">Absicherung:</label>
-					<select name="Absicherung" id="Absicherung" onchange="eingabe()">
-						<option>Absicherung</option>
-						<option value="2">2A</option>
-						<option value="4">4A</option>
-						<option value="6">6A</option>
-						<option value="10">10A</option>
-						<option value="13">13A</option>
-						<option value="16" selected="selected">16A</option>
-						<option value="20">20A</option>
-						<option value="25">25A</option>
-						<option value="32">32A</option>
-						<option value="35">35A</option>
-						<option value="40">40A</option>
-						<option value="50">50A</option>
-						<option value="63">63A</option>
-						<option value="80">80A</option>
-						<option value="100">100A</option>
-						<option value="125">125A</option>
-						<option value="160">160A</option>
-						<option value="200">200A</option>
-						<option value="224">224A</option>
-						<option value="250">250A</option>
-						<option value="315">315A</option>
-						<option value="355">355A</option>
-						<option value="400">400A</option>
-						<option value="500">500A</option>
-						<option value="630">630A</option>
-					</select>
-				</li>
-				<li data-theme="c">
-					<legend>
-						maximal zulässiger Spannungsfall in %:
-					</legend>
-					<input tabindex="5" type="text" id="inputmaxspannungsfall" data-role="controlgroup" value="3" onkeyup="eingabe()" onchange="eingabe()" />
-				</li>
-				<li data-theme="c">
-					<legend>
-						Kabellänge in Meter:
-					</legend>
-					<input tabindex="6" type="text" id="inputkabellaenge" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()" />
-				</li>
-				<li data-role="list-divider" role="heading">
-					Kabelverlegung:
-				</li>
-				<li id="elementkabeltyp" data-theme="c">
-					<label for="Kabeltyp">Kabeltyp:</label>
-					<select name="Kabeltyp" id="Kabeltyp" onchange="eingabe()">
-						<option value="1">NYY, NYM, NHXMH, NHMH, NYCY</option>
-						<option value="2">H07RN-F</option>
-						<option value="3">NHXH, NHXHX, NHCXH, NHXCHX, N2XH, N2XCH</option>
-					</select>
-				</li>
-				<li id="elementverlegung1" data-theme="c">
-					<label for="Verlegung1">Verlegeart NYY:</label>
-					<select name="Verlegung1" id="Verlegung1" onchange="eingabe()">
-						<option value="1">im Elektroinstallationsrohr oder -Kanal (B2)</option>
-						<option value="2">in wärmegedämmter Wand (A2)</option>
-						<option value="3">auf gelochter Kabelrinne (E)</option>
-						<option value="4">im Kabelschacht im Erdboden (D)</option>
-					</select>
-				</li>
-				<li id="elementverlegung2" data-theme="c" style="display:none">
-					<label for="Verlegung2">Verlegeart H07:</label>
-					<select name="Verlegung2" id="Verlegung2" onchange="eingabe()">
-						<option value="1">frei in der Luft</option>
-					</select>
-				</li>
-				<li id="elementverlegung3" data-theme="c" style="display:none">
-					<label for="Verlegung3">Verlegeart NHXH:</label>
-					<select name="Verlegung3" id="Verlegung3" onchange="eingabe()">
-						<option value="1">im Elektroinstallationsrohr oder -Kanal (B2)</option>
-						<option value="2">in wärmegedämmter Wand (A2)</option>
-						<option value="3">auf gelochter Kabelrinne (E)</option>
-					</select>
-				</li>
-				<li id="elementtemp1" data-theme="c">
-					<label for="TempNYY">max. Umgebungstemperatur NYY:</label>
-					<select name="TempNYY" id="TempNYY" onchange="eingabe()">
-						<option value="1.22">10°</option>
-						<option value="1.17">15°</option>
-						<option value="1.12">20°</option>
-						<option value="1.06">25°</option>
-						<option value="1.00" selected="selected">30°</option>
-						<option value="0.94">35°</option>
-						<option value="0.87">40°</option>
-						<option value="0.79">45°</option>
-						<option value="0.71">50°</option>
-						<option value="0.61">55°</option>
-						<option value="0.50">60°</option>
-						<option value="0.35">65°</option>
-					</select>
-				</li>
-				<li id="elementtemp2" data-theme="c" style="display:none">
-					<label for="TempH07">max. Umgebungstemperatur H07:</label>
-					<select name="TempH07" id="TempH07" onchange="eingabe()">
-						<option value="1.29">10°</option>
-						<option value="1.22">15°</option>
-						<option value="1.15">20°</option>
-						<option value="1.08">25°</option>
-						<option value="1.00" selected="selected">30°</option>
-						<option value="0.91">35°</option>
-						<option value="0.82">40°</option>
-						<option value="0.71">45°</option>
-						<option value="0.58">50°</option>
-						<option value="0.41">55°</option>
-					</select>
-				</li>
-				<li id="elementtemp3" data-theme="c" style="display:none">
-					<label for="TempNHXH">max. Umgebungstemperatur NHXH:</label>
-					<select name="TempNHXH" id="TempNHXH" onchange="eingabe()">
-						<option value="1.15">10°</option>
-						<option value="1.12">15°</option>
-						<option value="1.08">20°</option>
-						<option value="1.04">25°</option>
-						<option value="1.00" selected="selected">30°</option>
-						<option value="0.96">35°</option>
-						<option value="0.91">40°</option>
-						<option value="0.87">45°</option>
-						<option value="0.82">50°</option>
-						<option value="0.76">55°</option>
-						<option value="0.71">60°</option>
-						<option value="0.65">65°</option>
-						<option value="0.58">70°</option>
-						<option value="0.50">75°</option>
-						<option value="0.41">80°</option>
-						<option value="0.29">85°</option>
-					</select>
-				</li>
-				<li id="elementhaufung1" data-theme="c">
-					<label for="HaufungNYY">Häufung NYY:</label>
-					<select name="HaufungNYY" id="HaufungNYY" onchange="eingabe()">
-						<optgroup label="Gebündelt mit Berührung">
-							<option value="1.00">1 Kabel / Leitung</option>
-							<option value="0.80">2 Kabel / Leitungen</option>
-							<option value="0.70">3 Kabel / Leitungen</option>
-							<option value="0.65">4 Kabel / Leitungen</option>
-							<option value="0.60">5 Kabel / Leitungen</option>
-							<option value="0.57">6 Kabel / Leitungen</option>
-							<option value="0.54">7 Kabel / Leitungen</option>
-							<option value="0.52">8 Kabel / Leitungen</option>
-							<option value="0.50">9 Kabel / Leitungen</option>
-							<option value="0.48">10 Kabel / Leitungen</option>
-							<option value="0.45">12 Kabel / Leitungen</option>
-							<option value="0.43">14 Kabel / Leitungen</option>
-							<option value="0.41">16 Kabel / Leitungen</option>
-							<option value="0.39">18 Kabel / Leitungen</option>
-							<option value="0.38">20 Kabel / Leitungen</option>
-						</optgroup>
-						<optgroup label="Einlagig mit Berührung">
-							<option value="1.00">1 Kabel / Leitung</option>
-							<option value="0.85">2 Kabel / Leitungen</option>
-							<option value="0.79">3 Kabel / Leitungen</option>
-							<option value="0.75">4 Kabel / Leitungen</option>
-							<option value="0.73">5 Kabel / Leitungen</option>
-							<option value="0.72">6 Kabel / Leitungen</option>
-							<option value="0.72">7 Kabel / Leitungen</option>
-							<option value="0.71">8 Kabel / Leitungen</option>
-							<option value="0.70">9 Kabel / Leitungen</option>
-							<option value="0.70">10 Kabel / Leitungen</option>
-							<option value="0.70">12 Kabel / Leitungen</option>
-							<option value="0.70">14 Kabel / Leitungen</option>
-							<option value="0.70">16 Kabel / Leitungen</option>
-							<option value="0.70">18 Kabel / Leitungen</option>
-							<option value="0.70">20 Kabel / Leitungen</option>
-						</optgroup>
-						<optgroup label="Einlagig mit Zwischenraum gleich Kabeldurchmesser">
-							<option value="1.00">1 Kabel / Leitung</option>
-							<option value="0.85">2 Kabel / Leitungen</option>
-							<option value="0.79">3 Kabel / Leitungen</option>
-							<option value="0.75">4 Kabel / Leitungen</option>
-							<option value="0.73">5 Kabel / Leitungen</option>
-							<option value="0.72">6 Kabel / Leitungen</option>
-							<option value="0.72">7 Kabel / Leitungen</option>
-							<option value="0.71">8 Kabel / Leitungen</option>
-							<option value="0.70">9 Kabel / Leitungen</option>
-							<option value="0.70">10 Kabel / Leitungen</option>
-							<option value="0.70">12 Kabel / Leitungen</option>
-							<option value="0.70">14 Kabel / Leitungen</option>
-							<option value="0.70">16 Kabel / Leitungen</option>
-							<option value="0.70">18 Kabel / Leitungen</option>
-							<option value="0.70">20 Kabel / Leitungen</option>
-						</optgroup>
-					</select>
-				</li>
-				<li id="elementhaufung2" data-theme="c" style="display:none">
-					<label for="HaufungH07">Häufung H07:</label>
-					<select name="HaufungH07" id="HaufungH07" onchange="eingabe()">
-						<option value="1.00">1 Kabel / Leitung</option>
-						<option value="0.88">2 Kabel / Leitungen</option>
-						<option value="0.82">3 Kabel / Leitungen</option>
-						<option value="0.79">4 Kabel / Leitungen</option>
-						<option value="0.76">6 Kabel / Leitungen</option>
-						<option value="0.73">9 Kabel / Leitungen</option>
-					</select>
-				</li>
-				<li id="elementhaufung3" data-theme="c" style="display:none">
-					<label for="HaufungNHXH">Häufung NHXH:</label>
-					<select name="HaufungNHXH" id="HaufungNHXH" onchange="eingabe()">
-						<option value="1.00">1 Kabel / Leitung</option>
-						<option value="0.88">2 Kabel / Leitungen</option>
-						<option value="0.82">3 Kabel / Leitungen</option>
-						<option value="0.79">4 Kabel / Leitungen</option>
-						<option value="0.76">6 Kabel / Leitungen</option>
-						<option value="0.73">9 Kabel / Leitungen</option>
-					</select>
-				</li>
-				<li data-role="list-divider" role="heading">
-					Ergebnisse:
-				</li>
-				<li data-theme="c">
-					<legend>
-						Kabelquerschnitt nach Spannungsfall:
-					</legend>
-					<span></span><span id="outputquerschnittspannungsfall">0</span>
-				</li>
-				<li data-theme="c">
-					<legend>
-						Kabelquerschnitt nach Belastung:
-					</legend>
-					<span></span><span id="outputquerschnittverbraucher">0</span>
-				</li>
-				<li data-theme="c">
-					<legend>
-						Kabelquerschnitt nach Absicherung:
-					</legend>
-					<span></span><span id="outputquerschnittabsicherung">0</span>
-				</li>
-			</ul>
-		</div>
 	</div>
-</body>
+	
+	<div data-role="content">
+		<ul data-role="listview" data-divider-theme="b" data-inset="true">
+			<li data-role="list-divider" role="heading">
+				Grundlegendes:
+			</li>
+			<li data-theme="c">
+				<fieldset data-role="controlgroup" data-type="vertical">
+					<legend>
+						Netzart auswählen:
+					</legend>
+					<input id="radiogleichstrom" name="strom" value="gleichstrom" type="radio" onclick="netzwahl()">
+					<label for="radiogleichstrom">
+						Gleichstrom
+					</label>
+					<input id="radiowechselstrom" name="strom" value="wechselstrom" type="radio" onclick="netzwahl()">
+					<label for="radiowechselstrom">
+						Wechselstrom
+					</label>
+					<input id="radiodrehstrom" name="strom" value="drehstrom" type="radio" onclick="netzwahl()">
+					<label for="radiodrehstrom">
+						Drehstrom
+					</label>
+				</fieldset>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Spannung in Volt:
+				</legend>
+				<input tabindex="1" type="text" id="inputspannung" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()"/>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Stromaufnahme des Verbrauchers in Amperé:
+				</legend>
+				<input tabindex="2" type="text" id="inputstrom" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()"/>
+			</li>
 
+			<li data-theme="c">
+				<label for="Absicherung">Absicherung:</label>
+				<select name="Absicherung" id="Absicherung" onchange="eingabe()">
+					<option>Absicherung</option>
+					<option value="2">2A</option>
+					<option value="4">4A</option>
+					<option value="6">6A</option>
+					<option value="10">10A</option>
+					<option value="13">13A</option>
+					<option value="16" selected="selected" >16A</option>
+					<option value="20">20A</option>
+					<option value="25">25A</option>
+					<option value="32">32A</option>
+					<option value="35">35A</option>
+					<option value="40">40A</option>
+					<option value="50">50A</option>
+					<option value="63">63A</option>
+					<option value="80">80A</option>
+					<option value="100">100A</option>
+					<option value="125">125A</option>
+					<option value="160">160A</option>
+					<option value="200">200A</option>
+					<option value="224">224A</option>
+					<option value="250">250A</option>
+					<option value="315">315A</option>
+					<option value="355">355A</option>
+					<option value="400">400A</option>
+					<option value="500">500A</option>
+					<option value="630">630A</option>
+				</select>
+			</li>
+
+			<li id="elementphi" style="display:none" data-theme="c">
+				<legend>
+					cosinus phi:
+				</legend>
+				<input tabindex="3" type="text" id="inputphi" data-role="controlgroup" value="1" onkeyup="eingabe()" onchange="eingabe()"/>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Leistung in Watt:
+				</legend>
+				<span></span><span id="outputleistung">0</span>
+			</li>
+			<li data-theme="c">
+				<legend>
+					maximal zulässiger Spannungsfall in %:
+				</legend>
+				<input tabindex="5" type="text" id="inputmaxspannungsfall" data-role="controlgroup" value="3" onkeyup="eingabe()" onchange="eingabe()"/>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Kabellänge in Meter:
+				</legend>
+				<input tabindex="6" type="text" id="inputkabellaenge" data-role="controlgroup" onkeyup="eingabe()" onchange="eingabe()"/>
+			</li>
+			<li data-role="list-divider" role="heading">
+				Kabelverlegung:
+			</li>
+			<li id="elementkabeltyp" data-theme="c">
+				<label for="Kabeltyp">Kabeltyp:</label>
+				<select name="Kabeltyp" id="Kabeltyp" onchange="eingabe()">
+					<option value="1">NYY, NYM, NHXMH, NHMH, NYCY</option>
+					<option value="2">H07RN-F</option>
+					<option value="3">NHXH, NHXHX, NHCXH, NHXCHX, N2XH, N2XCH</option>
+				</select>
+			</li>
+			<li id="elementverlegung1" data-theme="c">
+				<label for="Verlegung1">Verlegeart NYY:</label>
+				<select name="Verlegung1" id="Verlegung1" onchange="eingabe()">
+					<option value="1">im Elektroinstallationsrohr oder -Kanal (B2)</option>
+					<option value="2">in wärmegedämmter Wand (A2)</option>
+					<option value="3">auf gelochter Kabelrinne (E)</option>
+					<option value="4">im Kabelschacht im Erdboden (D)</option>
+				</select>
+			</li>
+			<li id="elementverlegung2" data-theme="c" style="display:none">
+				<label for="Verlegung2">Verlegeart H07:</label>
+				<select name="Verlegung2" id="Verlegung2" onchange="eingabe()">
+					<option value="1">frei in der Luft</option>
+				</select>
+			</li>
+			<li id="elementverlegung3" data-theme="c" style="display:none">
+				<label for="Verlegung3">Verlegeart NHXH:</label>
+				<select name="Verlegung3" id="Verlegung3" onchange="eingabe()">
+					<option value="1">im Elektroinstallationsrohr oder -Kanal (B2)</option>
+					<option value="2">in wärmegedämmter Wand (A2)</option>
+					<option value="3">auf gelochter Kabelrinne (E)</option>
+				</select>
+			</li>
+			<li id="elementtemp1" data-theme="c">
+				<label for="TempNYY">max. Umgebungstemperatur NYY:</label>
+				<select name="TempNYY" id="TempNYY" onchange="eingabe()">
+					<option value="1.22">10°</option>
+					<option value="1.17">15°</option>
+					<option value="1.12">20°</option>
+					<option value="1.06">25°</option>
+					<option value="1.00" selected="selected" >30°</option>
+					<option value="0.94">35°</option>
+					<option value="0.87">40°</option>
+					<option value="0.79">45°</option>
+					<option value="0.71">50°</option>
+					<option value="0.61">55°</option>
+					<option value="0.50">60°</option>
+					<option value="0.35">65°</option>
+				</select>
+			</li>
+			<li id="elementtemp2" data-theme="c" style="display:none">
+				<label for="TempH07">max. Umgebungstemperatur H07:</label>
+				<select name="TempH07" id="TempH07" onchange="eingabe()">
+					<option value="1.29">10°</option>
+					<option value="1.22">15°</option>
+					<option value="1.15">20°</option>
+					<option value="1.08">25°</option>
+					<option value="1.00" selected="selected" >30°</option>
+					<option value="0.91">35°</option>
+					<option value="0.82">40°</option>
+					<option value="0.71">45°</option>
+					<option value="0.58">50°</option>
+					<option value="0.41">55°</option>
+				</select>
+			</li>
+			<li id="elementtemp3" data-theme="c" style="display:none">
+				<label for="TempNHXH">max. Umgebungstemperatur NHXH:</label>
+				<select name="TempNHXH" id="TempNHXH" onchange="eingabe()">
+					<option value="1.15">10°</option>
+					<option value="1.12">15°</option>
+					<option value="1.08">20°</option>
+					<option value="1.04">25°</option>
+					<option value="1.00" selected="selected" >30°</option>
+					<option value="0.96">35°</option>
+					<option value="0.91">40°</option>
+					<option value="0.87">45°</option>
+					<option value="0.82">50°</option>
+					<option value="0.76">55°</option>
+					<option value="0.71">60°</option>
+					<option value="0.65">65°</option>
+					<option value="0.58">70°</option>
+					<option value="0.50">75°</option>
+					<option value="0.41">80°</option>
+					<option value="0.29">85°</option>
+				</select>
+			</li>
+			<li id="elementhaufung1" data-theme="c">
+				<label for="HaufungNYY">Häufung NYY:</label>
+				<select name="HaufungNYY" id="HaufungNYY" onchange="eingabe()">
+					<optgroup label="Gebündelt mit Berührung">
+						<option value="1.00">1 Kabel / Leitung</option>
+						<option value="0.80">2 Kabel / Leitungen</option>
+						<option value="0.70">3 Kabel / Leitungen</option>
+						<option value="0.65">4 Kabel / Leitungen</option>
+						<option value="0.60">5 Kabel / Leitungen</option>
+						<option value="0.57">6 Kabel / Leitungen</option>
+						<option value="0.54">7 Kabel / Leitungen</option>
+						<option value="0.52">8 Kabel / Leitungen</option>
+						<option value="0.50">9 Kabel / Leitungen</option>
+						<option value="0.48">10 Kabel / Leitungen</option>
+						<option value="0.45">12 Kabel / Leitungen</option>
+						<option value="0.43">14 Kabel / Leitungen</option>
+						<option value="0.41">16 Kabel / Leitungen</option>
+						<option value="0.39">18 Kabel / Leitungen</option>
+						<option value="0.38">20 Kabel / Leitungen</option>
+					</optgroup>
+					<optgroup label="Einlagig mit Berührung">
+						<option value="1.00">1 Kabel / Leitung</option>
+						<option value="0.85">2 Kabel / Leitungen</option>
+						<option value="0.79">3 Kabel / Leitungen</option>
+						<option value="0.75">4 Kabel / Leitungen</option>
+						<option value="0.73">5 Kabel / Leitungen</option>
+						<option value="0.72">6 Kabel / Leitungen</option>
+						<option value="0.72">7 Kabel / Leitungen</option>
+						<option value="0.71">8 Kabel / Leitungen</option>
+						<option value="0.70">9 Kabel / Leitungen</option>
+						<option value="0.70">10 Kabel / Leitungen</option>
+						<option value="0.70">12 Kabel / Leitungen</option>
+						<option value="0.70">14 Kabel / Leitungen</option>
+						<option value="0.70">16 Kabel / Leitungen</option>
+						<option value="0.70">18 Kabel / Leitungen</option>
+						<option value="0.70">20 Kabel / Leitungen</option>
+					</optgroup>
+					<optgroup label="Einlagig mit Zwischenraum gleich Kabeldurchmesser">
+						<option value="1.00">1 Kabel / Leitung</option>
+						<option value="0.85">2 Kabel / Leitungen</option>
+						<option value="0.79">3 Kabel / Leitungen</option>
+						<option value="0.75">4 Kabel / Leitungen</option>
+						<option value="0.73">5 Kabel / Leitungen</option>
+						<option value="0.72">6 Kabel / Leitungen</option>
+						<option value="0.72">7 Kabel / Leitungen</option>
+						<option value="0.71">8 Kabel / Leitungen</option>
+						<option value="0.70">9 Kabel / Leitungen</option>
+						<option value="0.70">10 Kabel / Leitungen</option>
+						<option value="0.70">12 Kabel / Leitungen</option>
+						<option value="0.70">14 Kabel / Leitungen</option>
+						<option value="0.70">16 Kabel / Leitungen</option>
+						<option value="0.70">18 Kabel / Leitungen</option>
+						<option value="0.70">20 Kabel / Leitungen</option>
+					</optgroup>
+				</select>
+			</li>
+			<li id="elementhaufung2" data-theme="c">
+				<label for="HaufungH07">Häufung H07:</label>
+				<select name="HaufungH07" id="HaufungH07" onchange="eingabe()">
+					<option value="1.00">1 Kabel / Leitung</option>
+					<option value="0.88">2 Kabel / Leitungen</option>
+					<option value="0.82">3 Kabel / Leitungen</option>
+					<option value="0.79">4 Kabel / Leitungen</option>
+					<option value="0.76">6 Kabel / Leitungen</option>
+					<option value="0.73">9 Kabel / Leitungen</option>
+				</select>
+			</li>
+			<li id="elementhaufung3" data-theme="c">
+				<label for="HaufungNHXH">Häufung NHXH:</label>
+				<select name="HaufungNHXH" id="HaufungNHXH" onchange="eingabe()">
+					<option value="1.00">1 Kabel / Leitung</option>
+					<option value="0.88">2 Kabel / Leitungen</option>
+					<option value="0.82">3 Kabel / Leitungen</option>
+					<option value="0.79">4 Kabel / Leitungen</option>
+					<option value="0.76">6 Kabel / Leitungen</option>
+					<option value="0.73">9 Kabel / Leitungen</option>
+				</select>
+			</li>
+			<li data-role="list-divider" role="heading">
+				Ergebnisse:
+			</li>
+			<li data-theme="c">
+				<legend>
+					Kabelquerschnitt nach Spannungsfall:
+				</legend>
+				<span></span><span id="outputquerschnittspannungsfall">0</span>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Kabelquerschnitt nach Belastung:
+				</legend>
+				<span></span><span id="outputquerschnittverbraucher">0</span>
+			</li>
+			<li data-theme="c">
+				<legend>
+					Kabelquerschnitt nach Absicherung:
+				</legend>
+				<span></span><span id="outputquerschnittabsicherung">0</span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+	
+
+</body>
 </html>
