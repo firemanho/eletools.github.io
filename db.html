@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="expires" content="0"> <!-- jedes mal neu laden erzwingen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title> E-Tools Master Branch</title>
+    <!-- <link rel=”shortcut icon” type=”image/x-icon” href=”/favicon.ico”> -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" sizes="196x196" href="icon-196x196.png">
+    <link rel="stylesheet" href="js/jquery.mobile-1.3.0.min.css">
+    <link rel="stylesheet" href="js/my.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.3.0.min.js"></script>
+    <script language="javascript" type="text/javascript" src="db.js"></script>
+</head>
+<body>
+
+<!-- raster -->
+<div data-role="page" id="db">
+    <div data-theme="a" data-role="header">
+		<a data-role="button" href="#rasterinfo" data-icon="info" data-iconpos="left"
+        class="ui-btn-right" data-rel="dialog" data-transition="pop">
+            Info
+        </a>
+        <a data-role="button" href="index.html" data-icon="back" data-iconpos="left"
+        class="ui-btn-left" data-direction="reverse" data-rel="back">
+            zurück
+        </a>
+        <h3>
+			E-Tools
+        </h3>
+    </div>
+	
+	<div data-role="content">
+    <div>
+		<div data-role="content">
+			<ul data-role="listview" data-divider-theme="b" data-inset="true">
+				<li data-role="list-divider" role="heading">
+					Deckungsbeitragberechnung
+				</li>
+				<li data-theme="c">
+					<label>
+						Einkaufspreis:
+					</label>
+					<input tabindex="1" type="number" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
+				</li>
+				<li data-theme="c">
+					<label>
+						Deckungsbeitrag:
+					</label>
+					<input tabindex="1" type="number" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
+				</li>
+				<li data-theme="c">
+					<label>
+						Verkaufspreis:
+					</label>
+					<input tabindex="1" type="number" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
+				</li>
+				<li data-theme="c">
+					<label>
+						Aufschlag:
+					</label>
+					<input tabindex="1" type="number" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- rasterinfo popup dialog -->
+<div data-role="page" id="rasterinfo">
+
+	<div data-role="header" data-theme="e">
+		<h1>Informationen zur Rasterberechnung</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" data-theme="d">	
+		<h2>Popup</h2>
+		<p>Hier hönnten Informationen zur Rasterberechnung stehen</p>		
+		<p><a href="#raster" data-rel="back" data-role="button" data-inline="true" data-icon="back">schliessen</a></p>	
+	</div><!-- /content -->
+	
+	<div data-role="footer">
+		<h4></h4>
+	</div><!-- /footer -->
+</div><!-- /page popup -->
+
+</body>
+</html>
