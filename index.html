@@ -200,56 +200,43 @@
             </div>
           </section>
         </div>
-	<div class="mdl-layout__tab-panel" id="rasterberechnung">
+      	<div class="mdl-layout__tab-panel" id="rasterberechnung">
           <section class="section--center mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col">
             <h2>Rasterberechnung</h2>
-            <div data-role="content">
-				        <li data-role="list-divider" role="heading">
-					       Rasterberechnung
-				        </li>
-				        <li data-theme="c">
-                  <label>
-                  Länge der Bewertungsfläche in Meter:
-                  </label>
-                  <input tabindex="1" type="text" id="inputlaenge" data-role="controlgroup" onkeyup="checkl()" onchange="checkl()"/>
-				        </li>
-				        <li data-theme="c">
-                  <label>
-                  Anzahl der Rasterpunkte:
-                  </label>
-                  <span></span><span id="outputarla" >0</span>
-                </li>
-                <li data-theme="c">
-                  <label>
-                  Rasterlänge:
-                  </label>
-                  <span></span><span id="outputrlla">0</span>
-                </li>
-                <li data-role="list-divider" role="heading">
-                </li>
-                <li data-theme="c">
-                  <label>
-                  Breite der Bewertungsfläche in Meter:
-                  </label>
-                  <input tabindex="2" type="text" id="inputbreite" data-role="controlgroup" onkeyup="checkb()" onchange="checkb()"/>
-                </li>
-                <li data-theme="c">
-                  <label>
-                  Anzahl der Rasterpunkte:
-                  </label>
-                  <span></span><span id="outputarbb" >0</span>
-                </li>
-                <li data-theme="c">
-                  <label>
-                  Rasterbreite:
-                  </label>
-                  <span></span><span id="outputrlbb">0</span>
-                </li>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="inputlaenge" onkeyup="checkl()" onchange="checkl()">
+                <label class="mdl-textfield__label" for="inputlaenge">Länge der Bewertungsfläche</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+              </div>
+            </form>
+		        <p>
+              Anzahl der Rasterpunkte:
+              <span></span><span id="outputarla" >0</span>
+            </p>
+            <p>
+              Rasterlänge:
+              <span></span><span id="outputrlla">0</span>
+            </p>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="inputbreite" onkeyup="checkb()" onchange="checkb()">
+                <label class="mdl-textfield__label" for="inputbreite">Breite der Bewertungsfläche</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+              </div>
+            </form>
+            <p>
+              Anzahl der Rasterpunkte:
+              <span></span><span id="outputarbb" >0</span>
+            </p>
+            <p>
+              Rasterbreite:
+              <span></span><span id="outputrlbb">0</span>
+            </p>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
 <!-footer>
         <footer class="mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
