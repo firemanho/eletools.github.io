@@ -203,12 +203,11 @@
       	<div class="mdl-layout__tab-panel" id="rasterberechnung">
           <section class="section--center mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col">
-            <h2>Rasterberechnung</h2>
+            <h4>Rasterberechnung</h4>
             <form action="#">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="inputlaenge" onkeyup="checkl()" onchange="checkl()">
+                <input class="mdl-textfield__input" type="number" step="0.0001" id="inputlaenge" onkeyup="checkl()" onchange="checkl()">
                 <label class="mdl-textfield__label" for="inputlaenge">Länge der Bewertungsfläche</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
               </div>
             </form>
 		        <p>
@@ -221,9 +220,8 @@
             </p>
             <form action="#">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="inputbreite" onkeyup="checkb()" onchange="checkb()">
+                <input class="mdl-textfield__input" type="text" id="inputbreite" onkeyup="checkb()" onchange="checkb()">
                 <label class="mdl-textfield__label" for="inputbreite">Breite der Bewertungsfläche</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
               </div>
             </form>
             <p>
@@ -236,6 +234,13 @@
             </p>
             </div>
           </section>
+
+
+
+
+
+
+
         </div>
 <!-footer>
         <footer class="mdl-mega-footer">
